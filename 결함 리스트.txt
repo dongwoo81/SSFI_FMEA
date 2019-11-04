@@ -1,0 +1,65 @@
+"??? Error due to multiple causes.\nCaused by:\n    Invalid setting in 'sldemo_absbrake_Full_X5/-1//m' for parameter 'Gain'.\n        
+Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X5/-1//m'\n            'm'은(는) 정의되지 않은 함수 또는 변수입니다.\n                
+Variable 'm' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    
+? Load a file into base workspace. - Fix\n                    
+? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X5/1//I' for parameter 'Gain'.\n        
+Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X5/1//I'\n            'I'은(는) 정의되지 않은 함수 또는 변수입니다.\n                
+Variable 'I' has been deleted from base workspace.\n                Suggested Actions:\n                    
+? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    
+? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X5/Brake pressure' for parameter 'UpperSaturationLimit'.\n        
+Error evaluating parameter 'UpperSaturationLimit' in 'sldemo_absbrake_Full_X5/Brake pressure'\n            'PBmax'은(는) 정의되지 않은 함수 또는 변수입니다.\n               
+Variable 'PBmax' has been deleted from base workspace.\n                Suggested Actions:\n                    
+? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    
+? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X5/Ctrl' for parameter 'Gain'.\n        
+Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X5/Ctrl'\n            'ctrl'은(는) 정의되지 않은 함수 또는 변수입니다.\n                
+Variable 'ctrl' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X5/Force & torque' for parameter 'Gain'.\n        Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X5/Force & torque'\n            'Kf'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'Kf' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X5/Hydraulic Lag ' for parameter 'Denominator'.\n        Error evaluating parameter 'Denominator' in 'sldemo_absbrake_Full_X5/Hydraulic Lag '\n            'TB'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'TB' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X5/Rr' for parameter 'Gain'.\n        Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X5/Rr'\n            'Rr'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'Rr' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X5/Vehicle speed' for parameter 'InitialCondition'.\n        Error evaluating parameter 'InitialCondition' in 'sldemo_absbrake_Full_X5/Vehicle speed'\n            'v0'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'v0' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X5/Vehicle speed (angular)' for parameter 'Gain'.\n        Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X5/Vehicle speed (angular)'\n            'Rr'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'Rr' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X5/Weight' for parameter 'Gain'.\n        Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X5/Weight'\n            'm'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'm' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X5/Wheel Speed1' for parameter 'InitialCondition'.\n        Error evaluating parameter 'InitialCondition' in 'sldemo_absbrake_Full_X5/Wheel Speed1'\n            'v0'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'v0' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X5/mu-slip friction curve' for parameter 'BreakpointsForDimension1'.\n        Error evaluating parameter 'BreakpointsForDimension1' in 'sldemo_absbrake_Full_X5/mu-slip friction curve'\n            'slip'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'slip' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n\n"
+
+
+
+
+sldemo_absbrake_Full_X1/Wheel Speed1'\n            'v0'은(는) 정의되지 않은 함수 또는 변수입니다.\n                
+Variable 'v0' has been deleted from base workspace.\n                
+Suggested Actions:\n                    
+? Undo the deletion. - Fix\n                    
+? Load a file into base workspace. - Fix\n                    
+? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X1/mu-slip friction curve' for parameter 'BreakpointsForDimension1'.\n        
+Error evaluating parameter 'BreakpointsForDimension1' in 'sldemo_absbrake_Full_X1/mu-slip friction curve'\n            
+'slip'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'slip' has been deleted from base workspace.\n                
+Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n\n"
+
+
+"??? Error due to multiple causes.\nCaused by:\n    
+Invalid setting in 'sldemo_absbrake_Full_X4/-1//m' for parameter 'Gain'.\n
+Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X4/-1//m'\n            'm'은(는) 정의되지 않은 함수 또는 변수입니다.\n
+Variable 'm' has been deleted from base workspace.\n
+
+Suggested Actions:\n
+? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    
+? Create a new variable. - Fix\n    
+Invalid setting in 'sldemo_absbrake_Full_X4/1//I' for parameter 'Gain'.\n        
+Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X4/1//I'\n            'I'은(는) 정의되지 않은 함수 또는 변수입니다.\n 
+Variable 'I' has been deleted from base workspace.\n                Suggested Actions:\n                    
+? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    
+? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X4/Brake pressure' for parameter 'UpperSaturationLimit'.\n        
+Error evaluating parameter 'UpperSaturationLimit' in 'sldemo_absbrake_Full_X4/Brake pressure'\n            'PBmax'은(는) 정의되지 않은 함수 또는 변수입니다.\n
+Variable 'PBmax' has been deleted from base workspace.\n                Suggested Actions:\n                    
+? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    
+? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X4/Ctrl' for parameter 'Gain'.\n       
+Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X4/Ctrl'\n            'ctrl'은(는) 정의되지 않은 함수 또는 변수입니다.\n                
+Variable 'ctrl' has been deleted from base workspace.\n                Suggested Actions:\n                    
+? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                   
+? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X4/Force & torque' for parameter 'Gain'.\n        
+Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X4/Force & torque'\n            'Kf'은(는) 정의되지 않은 함수 또는 변수입니다.\n
+Variable 'Kf' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    
+? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n   
+Invalid setting in 'sldemo_absbrake_Full_X4/Hydraulic Lag ' for parameter 'Denominator'.\n        
+Error evaluating parameter 'Denominator' in 'sldemo_absbrake_Full_X4/Hydraulic Lag '\n            'TB'은(는) 정의되지 않은 함수 또는 변수입니다.\n               
+Variable 'TB' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    
+? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X4/Rr' for parameter 'Gain'.\n       
+Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X4/Rr'\n            'Rr'은(는) 정의되지 않은 함수 또는 변수입니다.\n                
+Variable 'Rr' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    
+? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X4/Vehicle speed' for parameter 'InitialCondition'.\n        Error evaluating parameter 'InitialCondition' in 'sldemo_absbrake_Full_X4/Vehicle speed'\n            
+'v0'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'v0' has been deleted from base workspace.\n                Suggested Actions:\n                    
+? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    
+Invalid setting in 'sldemo_absbrake_Full_X4/Vehicle speed (angular)' for parameter 'Gain'.\n       
+Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X4/Vehicle speed (angular)'\n            'Rr'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'Rr' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X4/Weight' for parameter 'Gain'.\n        Error evaluating parameter 'Gain' in 'sldemo_absbrake_Full_X4/Weight'\n            'm'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'm' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X4/Wheel Speed1' for parameter 'InitialCondition'.\n        Error evaluating parameter 'InitialCondition' in 'sldemo_absbrake_Full_X4/Wheel Speed1'\n            'v0'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'v0' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n    Invalid setting in 'sldemo_absbrake_Full_X4/mu-slip friction curve' for parameter 'BreakpointsForDimension1'.\n        Error evaluating parameter 'BreakpointsForDimension1' in 'sldemo_absbrake_Full_X4/mu-slip friction curve'\n            'slip'은(는) 정의되지 않은 함수 또는 변수입니다.\n                Variable 'slip' has been deleted from base workspace.\n                Suggested Actions:\n                    ? Undo the deletion. - Fix\n                    ? Load a file into base workspace. - Fix\n                    ? Create a new variable. - Fix\n\n"
