@@ -217,12 +217,12 @@ namespace MDL_Gen_V02
 
         String fault_module;        // 추가되는 결함블럭
         String ADD_Line;            // 추가되는 라인(결함블록 
-        String s_Modify_Line;         // 변경되는 라인 (dest 쪽이 결함 모듈쪽으로 변경되어야 함)
-        String d_Modify_Line;         // 변경되는 라인 (dest 쪽이 결함 모듈쪽으로 변경되어야 함)
+        //String s_Modify_Line;         // 변경되는 라인 (dest 쪽이 결함 모듈쪽으로 변경되어야 함)
+        //String d_Modify_Line;         // 변경되는 라인 (dest 쪽이 결함 모듈쪽으로 변경되어야 함)
 
         // Simulink 시뮬레이터 연결 모듈
         MLApp.MLApp MATLAB;
-        MLApp.MLApp SFI_MATLAB;
+        //MLApp.MLApp SFI_MATLAB;
 
         // golden run 시뮬레이션 결과를 저장하기 위한 배열
         public double[] golden_result_SET;
@@ -246,7 +246,7 @@ namespace MDL_Gen_V02
 
 
         STATIS_Fault_SET[] statistical_FI_DB;
-        int statistical_num = 0;
+        //int statistical_num = 0;
 
         // 결함주입 시뮬레이션 결과 분석을 위한 정상상태, 결함주입 시험 비교 자료 저장 구조체
 
@@ -270,9 +270,9 @@ namespace MDL_Gen_V02
         // 고장 판정에 사용할 검출도, 심각도, 발생도를 판정할 수 있는 자료가 설정되어 있는지를 
         // 확인하는 변수
 
-        bool SEV_SET = false;
-        bool DEC_SET = false;
-        bool OCC_SET = false;
+//        bool SEV_SET = false;
+//        bool DEC_SET = false;
+//        bool OCC_SET = false;
 
         // 결함주입 시험결과의 고장모드와 고장영향 문자열을 저장하기 위한 String
 
@@ -3283,7 +3283,7 @@ namespace MDL_Gen_V02
 
             dlg.ShowDialog();
 
-            SEV_SET = true;
+            //SEV_SET = true;
         }
 
         private void ADD_Rule_Function(string[] sender)
@@ -3388,7 +3388,7 @@ namespace MDL_Gen_V02
 
             dlg.ShowDialog();
 
-            OCC_SET = true;
+            //OCC_SET = true;
 
 
         }
@@ -3453,11 +3453,11 @@ namespace MDL_Gen_V02
             //1. Block 중 top level에 있는 모든 블록에 결함주입 모듈을 모두 추가한다
             for (int i = 0; i < Block_DB_count; i++)
             {
-                if (Block_DB[i].Parent_Block == "TOP LEVEL")
-                {
+                //if (Block_DB[i].Parent_Block == "TOP LEVEL")
+               // {
                     if (Block_DB[i].BlockType == "Constant" || Block_DB[i].BlockType == "BusCreator"
                          || Block_DB[i].BlockType == "SubSystem" || Block_DB[i].BlockType == "MultiPortSwitch" || Block_DB[i].BlockType == "Inport"
-                         || Block_DB[i].BlockType == "FromWorkspace")
+                         || Block_DB[i].BlockType == "FromWorkspace" || Block_DB[i].BlockType == "InportShadow" || Block_DB[i].BlockType == "Switch")
                     {
 
                     }
@@ -3485,7 +3485,8 @@ namespace MDL_Gen_V02
 
                         full_fault_list[full_fault_list_count++].set_injected = false;
                     }
-                }
+
+                //}
             }
 
             // 2. 파일을 하나 만든다.
@@ -3599,7 +3600,8 @@ namespace MDL_Gen_V02
 
                     if (set_Blockfault == true)
                     {
-                        if (str.Contains("}") && current_depth == 1)
+                        if (str.Contains("}") && (current_depth == 1 || current_depth == 3 || current_depth == 5 ||
+                            current_depth == 7 || current_depth == 9 || current_depth == 11))        // top level 1인경우, 
                         {
                             // 결함모델 주입
                             set_Blockfault = false;
@@ -3729,12 +3731,14 @@ namespace MDL_Gen_V02
                     /////// top level의 Line 문 도달 했는지 확인한다. !!!!
                     if (start_block_set == true)
                     {
-                        if (str.Contains("Line") == true && current_depth == 2 && str.Contains("{") == true)
+                        if (str.Contains("Line") == true && (current_depth == 2 || current_depth == 4 || current_depth == 6 || current_depth == 8
+                            || current_depth == 10 || current_depth == 12) && str.Contains("{") == true)
                         {
                             set_Line = true;        // Line 구문에 들어온 상태
                         }
 
-                        if(set_Line == true && current_depth == 1 && str.Contains("}") == true)
+                        if(set_Line == true && (current_depth == 1 || current_depth == 3 || current_depth == 5 || current_depth == 7
+                            || current_depth == 9 || current_depth == 11 || current_depth == 13) && str.Contains("}") == true)
                         {
                             set_Line = false;                   // Line 구문 종료
                             if(add_new_line == true)
@@ -3842,10 +3846,10 @@ namespace MDL_Gen_V02
 
                     }
                     else if(set_DstPort == true)
-                    {
+                    {       // 포트의 개수를 설정하는 구문  현재는 5개까지 지원할 수 있도록
                         if(set_update_DstBlock == true)
                         {
-                            if(str.Contains("1") == true)
+                            if(str.Contains("1") == true)       
                             {
                                 buffer_port = "1";
                                 sb_line.Append(buffer_DstBlock + "\"\n");
@@ -3865,6 +3869,36 @@ namespace MDL_Gen_V02
 
                                 if (set_branch == true)
                                     str_t_branch_port[num_branch - 1] = "2";
+                            }
+                            else if (str.Contains("3") == true)
+                            {
+                                buffer_port = "3";
+                                buffer_DstBlock += "_3\"";
+                                sb_line.Append(buffer_DstBlock + "\n");
+                                sb_line.Append("DstPort		      1\n");
+
+                                if (set_branch == true)
+                                    str_t_branch_port[num_branch - 1] = "3";
+                            }
+                            else if (str.Contains("4") == true)
+                            {
+                                buffer_port = "4";
+                                buffer_DstBlock += "_4\"";
+                                sb_line.Append(buffer_DstBlock + "\n");
+                                sb_line.Append("DstPort		      1\n");
+
+                                if (set_branch == true)
+                                    str_t_branch_port[num_branch - 1] = "4";
+                            }
+                            else if (str.Contains("5") == true)
+                            {
+                                buffer_port = "5";
+                                buffer_DstBlock += "_5\"";
+                                sb_line.Append(buffer_DstBlock + "\n");
+                                sb_line.Append("DstPort		      1\n");
+
+                                if (set_branch == true)
+                                    str_t_branch_port[num_branch - 1] = "5";
                             }
                             else
                             {
