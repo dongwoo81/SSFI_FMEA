@@ -56,17 +56,17 @@ namespace MDL_Gen_V02
                     {
                         if(k == 0)
                         {
-                            this.listBox1.Items.Add(Block_data[i].fault_block_name);
+                            this.listBox1.Items.Add(Block_data[i].full_path_fault_block_name);
                         }
                         else
                         {
-                            string temp = Block_data[i].fault_block_name + "_" + (k+1).ToString();
+                            string temp = Block_data[i].full_path_fault_block_name + "_" + (k+1).ToString();
                             this.listBox1.Items.Add(temp);
                         }
                     }
                 }
                 else
-                    this.listBox1.Items.Add(Block_data[i].fault_block_name);
+                    this.listBox1.Items.Add(Block_data[i].full_path_fault_block_name);
             }
 
 
@@ -137,9 +137,17 @@ namespace MDL_Gen_V02
                     data[i].F_disable = set_e_time.ToString();
 
                     // 결함 값
-                    temp_double = r.Next(fault_min_val /10, fault_max_val/10) / (double)10;
-                    Math.Round(temp_double, 2);
-                    data[i].F_value = temp_double.ToString();
+                    if(comboBox1.Text == "Unintended Activation")
+                    {
+                        int rand_f_value = r.Next(fault_min_val, fault_max_val);
+                        data[i].F_value = rand_f_value.ToString();
+                    }
+                    else
+                    { 
+                        temp_double = r.Next(fault_min_val /10, fault_max_val/10) / (double)10;
+                        Math.Round(temp_double, 2);
+                        data[i].F_value = temp_double.ToString();
+                    }
 
                     // 결함 유지시간
                     temp_d = r.Next(fault_min_duration, fault_max_duration);

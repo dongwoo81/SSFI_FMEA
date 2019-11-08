@@ -1,0 +1,10 @@
+순번	고장모드	고장값	고장유지시간	고장영향	심각도	발생빈도	검출도	RPN	평균 고장값	최대 고장값	고장주입 시간	
+1	Flight Controller/Attitude/FAULT_Sum16_3	6	9	1번 모터 제어 결함	7	10	10	700	110.409537039047	229.5149	41	
+2	Flight Controller/XY-to-reference-orientation/FAULT_Trigonometric\nFunction	3	9	1번 모터 제어 결함	0	10	10	0	9.99999999998199E-05	0.000100000000031741	46	
+3	Flight Controller/FAULT_motors_refout1	2	7	1번 모터 제어 결함	0	10	10	0	9.99999999998199E-05	0.000100000000031741	7	
+4	Flight Controller/thrustsToMotorCommands/FAULT_motors_cmdout	9	6	1번 모터 제어 결함	7	10	10	700	86.6914807045399	233.0863	46	
+5	Flight Controller/thrustsToMotorCommands/FAULT_motors_cmdout	2	9	1번 모터 제어 결함	7	10	10	700	114.176384963426	237.98	32	
+6	Flight Controller/ControlMixer/FAULT_thrusts_refout	7	6	1번 모터 제어 결함	7	10	10	700	85.9121112341799	230.9008	5	
+7	Flight Controller/FAULT_Mux2_2	4	7	1번 모터 제어 결함	0	10	10	0	9.99999999998199E-05	0.000100000000031741	14	
+8	Flight Controller/XY-to-reference-orientation/FAULT_Vector\nConcatenate_2	1	6	1번 모터 제어 결함	0	10	10	0	9.99999999998199E-05	0.000100000000031741	28	
+9	Flight Controller/thrustsToMotorCommands/FAULT_motors_cmdout1	4	5	1번 모터 제어 결함	0	10	10	0	9.99999999998199E-05	0.000100000000031741	48	

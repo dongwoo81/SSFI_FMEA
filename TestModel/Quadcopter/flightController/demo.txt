@@ -1,0 +1,45 @@
+순번	고장모드	고장값	고장유지시간	고장영향	심각도	발생빈도	검출도	RPN	평균 고장값	최대 고장값	고장주입 시간	
+1	Flight Controller/Attitude/FAULT_tau_roll	0.8	581	1번 모터 제어 고장	0	10	10	0	9.99999999996654E-05	0.00010000000000332	660	
+2	Flight Controller/XY-to-reference-orientation/FAULT_Vector\nConcatenate_2	0.7	211	1번 모터 제어 고장	0	10	10	0	9.99999999996654E-05	0.00010000000000332	4321	
+3	Flight Controller/Yaw/FAULT_D_yaw	0.3	511	1번 모터 제어 고장	0	10	10	0	9.99999999996654E-05	0.00010000000000332	4703	
+4	FAULT_motors_refout2	0.3	418	1번 모터 제어 고장	0	10	10	0	9.99999999996654E-05	0.00010000000000332	3554	
+5	Flight Controller/Yaw/FAULT_Sum1	0.3	269	1번 모터 제어 고장	0	10	10	0	9.99999999996654E-05	0.00010000000000332	3910	
+6	Flight Controller/Attitude/FAULT_Add_2	0.6	352	1번 모터 제어 고장	0	10	10	0	9.99999999996654E-05	0.00010000000000332	3844	
+7	Flight Controller/Attitude/FAULT_Mux1_2	0.8	225	1번 모터 제어 고장	0	10	10	0	9.99999999996654E-05	0.00010000000000332	2265	
+8	Flight Controller/FAULT_motors_refout1	0.7	395	1번 모터 제어 고장	0	10	10	0	9.99999999996654E-05	0.00010000000000332	3450	
+9	Flight Controller/thrustsToMotorCommands/FAULT_motors_cmdout	0.5	316	1번 모터 제어 고장	0	10	10	0	9.99999999996654E-05	0.00010000000000332	1270	
+10	Flight Controller/Attitude/FAULT_Sum19	0.6	533	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	3677	
+11	Flight Controller/FAULT_motors_refout2	0.8	493	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	643	
+12	Flight Controller/Attitude/FAULT_Mux1_2	0.6	223	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	1746	
+13	Flight Controller/thrustsToMotorCommands/FAULT_motors_cmdout3	0.7	525	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	707	
+14	Flight Controller/Attitude/FAULT_Demux	0.8	515	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	937	
+15	Flight Controller/Yaw/FAULT_D_yaw	0.3	200	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	4206	
+16	Flight Controller/Attitude/FAULT_Sum19	0.6	533	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	3627	
+17	Flight Controller/gravity feedforward/equilibrium thrust/FAULT_altitude_cmd	0.6	426	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	1927	
+18	Flight Controller/Yaw/FAULT_Sum1_2	0.8	272	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	4776	
+19	Flight Controller/Attitude/FAULT_Demux	0.3	277	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	655	
+20	Flight Controller/XY-to-reference-orientation/FAULT_P_xy	0.6	328	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	2474	
+21	Flight Controller/gravity feedforward/equilibrium thrust/FAULT_Sum15	0.4	467	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	2217	
+22	Flight Controller/FAULT_motors_refout2	0.1	353	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	3945	
+23	Flight Controller/gravity feedforward/equilibrium thrust/FAULT_altitude_cmd	0.5	477	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	4079	
+24	Flight Controller/Attitude/FAULT_Mux1_2	0.1	578	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	1341	
+25	Flight Controller/XY-to-reference-orientation/FAULT_Vector\nConcatenate_2	0.1	216	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	2704	
+26	Flight Controller/ControlMixer/FAULT_Product_2	0.3	376	1번 모터 제어 고장	7	10	10	700	8.72275929	124.0758	2505	
+27	Flight Controller/XY-to-reference-orientation/FAULT_Product_2	0.6	552	1번 모터 제어 고장	7	10	10	700	11.503801845	210.9289	3409	
+28	Flight Controller/XY-to-reference-orientation/FAULT_P_xy	0.3	599	1번 모터 제어 고장	7	10	10	700	11.503801845	210.9289	3692	
+29	Flight Controller/ControlMixer/FAULT_Product	0.3	222	1번 모터 제어 고장	7	10	10	700	11.503801845	210.9289	3896	
+30	Flight Controller/XY-to-reference-orientation/FAULT_Trigonometric\nFunction	0.1	339	1번 모터 제어 고장	7	10	10	700	12.314475605	236.9848	1742	
+31	Flight Controller/thrustsToMotorCommands/FAULT_motors_cmdout	0.4	223	1번 모터 제어 고장	7	10	10	700	139.619676870748	225.818	3559	
+32	Flight Controller/XY-to-reference-orientation/FAULT_Saturation	0.3	395	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	3448	
+33	Flight Controller/Attitude/FAULT_P_pr	0.6	322	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	1231	
+34	Flight Controller/Yaw/FAULT_D_yaw	0.3	245	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	1035	
+35	Flight Controller/Attitude/FAULT_Sum16	0.6	405	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	2743	
+36	Flight Controller/Yaw/FAULT_P_yaw	0.1	526	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	4819	
+37	Flight Controller/Attitude/FAULT_Sum16	0.7	584	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	2032	
+38	Flight Controller/gravity feedforward/equilibrium thrust/FAULT_Sum3	0.8	201	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	3134	
+39	Flight Controller/XY-to-reference-orientation/FAULT_Mux1	0.3	236	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	1507	
+40	Flight Controller/Yaw/FAULT_Sum2_2	0.6	504	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	3881	
+41	Flight Controller/FAULT_Selector	0.3	387	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	1648	
+42	Flight Controller/FAULT_Selector1	0.2	471	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	2777	
+43	Flight Controller/thrustsToMotorCommands/FAULT_motors_cmdout2	0.1	503	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	3646	
+44	Flight Controller/XY-to-reference-orientation/FAULT_Trigonometric\nFunction	0.2	459	1번 모터 제어 고장	7	10	10	700	13.34068422	239.2181	4509	

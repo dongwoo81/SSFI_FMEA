@@ -1,0 +1,10 @@
+순번	고장모드	고장값	고장유지시간	고장영향	심각도	발생빈도	검출도	RPN	평균 고장값	최대 고장값	고장주입 시간	
+1	Flight Controller/XY-to-reference-orientation/FAULT_Vector\nConcatenate1	0.3	9	1번 모터 제어 고장	0	10	10	0	9.99999999998199E-05	0.000100000000031741	41	
+2	Flight Controller/XY-to-reference-orientation/FAULT_P_xy	0.3	5	1번 모터 제어 고장	5	10	10	500	7.35886407461035	19.0034	46	
+3	Flight Controller/XY-to-reference-orientation/FAULT_P_xy	0.4	9	1번 모터 제어 고장	5	10	10	500	10.2411790690226	16.2077	7	
+4	Flight Controller/Yaw/FAULT_Sum2	0.1	6	1번 모터 제어 고장	0	10	10	0	0.0695744126984124	1.2972	46	
+5	Flight Controller/ControlMixer/FAULT_Mux2_3	0.3	9	1번 모터 제어 고장	0	10	10	0	0.00993092979127126	0.120800000000003	32	
+6	Flight Controller/FAULT_motors_refout3	0.1	7	1번 모터 제어 고장	0	10	10	0	9.99999999998199E-05	0.000100000000031741	5	
+7	Flight Controller/thrustsToMotorCommands/FAULT_Saturation5	0.3	6	1번 모터 제어 고장	7	10	10	700	62.6940045081992	167.2097	14	
+8	Flight Controller/FAULT_Mux2_3	0.1	7	1번 모터 제어 고장	0	10	10	0	9.99999999998199E-05	0.000100000000031741	28	
+9	Flight Controller/XY-to-reference-orientation/FAULT_D_xy	0.2	8	1번 모터 제어 고장	5	10	10	500	9.5189684949539	20.4737	48	

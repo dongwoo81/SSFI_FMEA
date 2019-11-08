@@ -73,6 +73,7 @@ namespace MDL_Gen_V02
     {
         public Block_SET Block_Data;
         public string fault_block_name;
+        public string full_path_fault_block_name;
         public bool set_injected;
         public int num_dstport;
     }
@@ -353,10 +354,10 @@ namespace MDL_Gen_V02
 
             // golden run 시뮬레이션 결과를 저장하기 위한 배열 크기 초기화
 
-            golden_result_SET = new double[10000];
+            golden_result_SET = new double[50000];
             golden_result_SIZE = 0;
 
-            fault_result_SET = new double[10000];
+            fault_result_SET = new double[50000];
             fault_result_SIZE = 0;
 
 
@@ -1479,6 +1480,10 @@ namespace MDL_Gen_V02
                     start_sim = 4;
                     set_product = true;
                 }
+                else if (c_refind_sim_result[3] == "single")
+                {
+                    start_sim = 6;
+                }
                 else
                 {
                     start_sim = 2;
@@ -1542,11 +1547,16 @@ namespace MDL_Gen_V02
                 bool set_product = false;
                 double setvalue = 0.0;
 
+                // 시뮬레이션 출력결과에 따른 파싱 방법을 정규화 해야 함(미해결) (2019-11-06)
                 if (c_refind_sim_result[3] == "*")
                 {
                     setvalue = Double.Parse(c_refind_sim_result[2]);
                     start_sim = 4;
                     set_product = true;
+                }
+                else if (c_refind_sim_result[3] == "single")
+                {
+                    start_sim = 6;
                 }
                 else
                 {
@@ -2462,6 +2472,10 @@ namespace MDL_Gen_V02
                 setvalue = Double.Parse(c_refind_sim_result[2]);
                 start_sim = 4;
                 set_product = true;
+            }
+            else if (c_refind_sim_result[3] == "single")
+            {
+                start_sim = 6;
             }
             else
             {
@@ -3451,13 +3465,15 @@ namespace MDL_Gen_V02
         {
 
             //1. Block 중 top level에 있는 모든 블록에 결함주입 모듈을 모두 추가한다
+            // 수정 작업
             for (int i = 0; i < Block_DB_count; i++)
             {
                 //if (Block_DB[i].Parent_Block == "TOP LEVEL")
                // {
                     if (Block_DB[i].BlockType == "Constant" || Block_DB[i].BlockType == "BusCreator"
                          || Block_DB[i].BlockType == "SubSystem" || Block_DB[i].BlockType == "MultiPortSwitch" || Block_DB[i].BlockType == "Inport"
-                         || Block_DB[i].BlockType == "FromWorkspace" || Block_DB[i].BlockType == "InportShadow" || Block_DB[i].BlockType == "Switch")
+                         || Block_DB[i].BlockType == "FromWorkspace" || Block_DB[i].BlockType == "InportShadow" || Block_DB[i].BlockType == "Switch"
+                         || Block_DB[i].BlockType == "BusSelector")
                     {
 
                     }
@@ -3478,8 +3494,31 @@ namespace MDL_Gen_V02
 
 
                         full_fault_list[full_fault_list_count].Block_Data = Block_DB[i];
-                        full_fault_list[full_fault_list_count].fault_block_name = "FAULT_" + block_name;//Block_DB[i].Name;
-                        
+
+                    full_fault_list[full_fault_list_count].fault_block_name = "FAULT_" + block_name;//Block_DB[i].Name;
+
+                    char[] delimiterpath = { '@', '"' };
+                    string[] path_words = Block_DB[i].Parent_Block.Split(delimiterpath);
+                    string[] path_check_words = new string[10];
+                    int path_check_words_count = 0;
+
+                    for(int loop = 0; loop < path_words.Count(); loop++)
+                    {
+                        if(path_words[loop] != "TOP LEVEL" && path_words[loop] !="")
+                        {
+                            path_check_words[path_check_words_count++] = path_words[loop];
+                        }
+                    }
+                    string full_path = "";
+
+                    for (int loop = 0; loop < path_check_words_count; loop++)
+                    {
+                        full_path += path_check_words[loop]+ "/";
+                    }
+
+                     full_fault_list[full_fault_list_count].full_path_fault_block_name
+                         = full_path + "FAULT_" + block_name;//Block_DB[i].Name;    
+
                         // dstport 개수 만큼 결함주입 모듈 설정
                         full_fault_list[full_fault_list_count].num_dstport = Block_DB[i].dst_port_num;
 
@@ -3796,8 +3835,9 @@ namespace MDL_Gen_V02
 
                         for(int t_num = 0; t_num < full_fault_list_count; t_num++)
                         {
-                            // 결함 블록을 생성한 라인만 수정을 한다
+                            // 결함 블록을 생성한 라인만 수정을 한다(2019 년 11일 수정필요함)
                             if(t_f_DstBlock == full_fault_list[t_num].fault_block_name) // && full_fault_list[t_num].Block_Data.Name == t_SrcBlock)
+                            //if ( full_fault_list[t_num].fault_block_name.Contains(t_f_DstBlock) == true) // && full_fault_list[t_num].Block_Data.Name == t_SrcBlock)
                             {
                                 //sb_line.Append("      DstBlock		      \"" + t_f_DstBlock + "\"");
                                 //sb_line.Append("\n");
