@@ -66,6 +66,8 @@ namespace MDL_Gen_V02
         public Position_SET Position;
         public String VariableName;
         public int dst_port_num;
+
+        public String SFBlockType;
     }
 
     // 2019-09-10 전체 결함주입 모듈 자동 주입을 위한 tol-level block만 추가하는 구조체
@@ -209,7 +211,7 @@ namespace MDL_Gen_V02
         bool Fault_Model_Check = false;
 
         // 상위 수준의 전체 결함주입 시험을 수행하기 위한 배열
-        full_fault_block[] full_fault_list = new full_fault_block[100];
+        full_fault_block[] full_fault_list = new full_fault_block[1000];
         int full_fault_list_count = 0;
 
 
@@ -489,6 +491,10 @@ namespace MDL_Gen_V02
                     Block_DB[Block_DB_count].BlockType = words[++index];
                     Block_DB[Block_DB_count].Parent_Block = level;
 
+                }
+                else if(words[index] == "SFBlockType")
+                {
+                    Block_DB[Block_DB_count-1].SFBlockType = words[++index];            
                 }
                 else if (words[index] == "Name" && enabel_Port == false && enable_Array == false && enable_Objcet == false)
                 {
@@ -3464,29 +3470,56 @@ namespace MDL_Gen_V02
         private void Full_SET_Click(object sender, EventArgs e)
         {
 
+            // Matlab 라이브러리 서브시스템으로 결함주입 제외될 블록 관리용 변수
+            int num_exception_block = 0;
+            string[] list_exception_block = new string[100];
+
+
             //1. Block 중 top level에 있는 모든 블록에 결함주입 모듈을 모두 추가한다
             // 수정 작업
             for (int i = 0; i < Block_DB_count; i++)
             {
                 //if (Block_DB[i].Parent_Block == "TOP LEVEL")
-               // {
-                    if (Block_DB[i].BlockType == "Constant" || Block_DB[i].BlockType == "BusCreator"
-                         || Block_DB[i].BlockType == "SubSystem" || Block_DB[i].BlockType == "MultiPortSwitch" || Block_DB[i].BlockType == "Inport"
-                         || Block_DB[i].BlockType == "FromWorkspace" || Block_DB[i].BlockType == "InportShadow" || Block_DB[i].BlockType == "Switch"
-                         || Block_DB[i].BlockType == "BusSelector")
+                // {
+                if (Block_DB[i].BlockType == "Constant" || Block_DB[i].BlockType == "BusCreator"
+                     || Block_DB[i].BlockType == "SubSystem" || Block_DB[i].BlockType == "MultiPortSwitch" || Block_DB[i].BlockType == "Inport"
+                     || Block_DB[i].BlockType == "FromWorkspace" || Block_DB[i].BlockType == "InportShadow" || Block_DB[i].BlockType == "Switch"
+                     || Block_DB[i].BlockType == "BusSelector" || Block_DB[i].BlockType == "Selector" || Block_DB[i].BlockType == "Reference")
+                {
+                    if(Block_DB[i].BlockType == "SubSystem" && Block_DB[i].SFBlockType == null)
                     {
-
+                                
                     }
-                    else
+                    else if (Block_DB[i].BlockType == "SubSystem" && Block_DB[i].SFBlockType.Contains("MATLAB") == true)     // matlab 라이브러리 서브 시스템으로 결함주입 대상에서 제외
                     {
-                        
+                        list_exception_block[num_exception_block] = Block_DB[i].Name;
+                        num_exception_block++;
+                    }
+
+                }
+                else
+                {
+                    bool exception_block_check = false;
+                    if (num_exception_block != 0)
+                    {
+                        for (int x = 0; x < num_exception_block; x++)
+                        {
+                            if (Block_DB[i].Parent_Block.Contains(list_exception_block[x]) == true)
+                            {
+                                exception_block_check = true;
+                            }
+                        }
+                    }
+
+                    if (exception_block_check == false)
+                    {
                         char[] delimiterChars = { '"' };
                         string[] t_words = Block_DB[i].Name.Split(delimiterChars);
-                        string block_name ="";
+                        string block_name = "";
 
-                        for(int a=0; a < t_words.Count(); a++)
+                        for (int a = 0; a < t_words.Count(); a++)
                         {
-                            if(t_words[a] != "")
+                            if (t_words[a] != "")
                             {
                                 block_name = t_words[a];
                             }
@@ -3495,37 +3528,36 @@ namespace MDL_Gen_V02
 
                         full_fault_list[full_fault_list_count].Block_Data = Block_DB[i];
 
-                    full_fault_list[full_fault_list_count].fault_block_name = "FAULT_" + block_name;//Block_DB[i].Name;
+                        full_fault_list[full_fault_list_count].fault_block_name = "FAULT_" + block_name;//Block_DB[i].Name;
 
-                    char[] delimiterpath = { '@', '"' };
-                    string[] path_words = Block_DB[i].Parent_Block.Split(delimiterpath);
-                    string[] path_check_words = new string[10];
-                    int path_check_words_count = 0;
+                        char[] delimiterpath = { '@', '"' };
+                        string[] path_words = Block_DB[i].Parent_Block.Split(delimiterpath);
+                        string[] path_check_words = new string[10];
+                        int path_check_words_count = 0;
 
-                    for(int loop = 0; loop < path_words.Count(); loop++)
-                    {
-                        if(path_words[loop] != "TOP LEVEL" && path_words[loop] !="")
+                        for (int loop = 0; loop < path_words.Count(); loop++)
                         {
-                            path_check_words[path_check_words_count++] = path_words[loop];
+                            if (path_words[loop] != "TOP LEVEL" && path_words[loop] != "")
+                            {
+                                path_check_words[path_check_words_count++] = path_words[loop];
+                            }
                         }
-                    }
-                    string full_path = "";
+                        string full_path = "";
 
-                    for (int loop = 0; loop < path_check_words_count; loop++)
-                    {
-                        full_path += path_check_words[loop]+ "/";
-                    }
+                        for (int loop = 0; loop < path_check_words_count; loop++)
+                        {
+                            full_path += path_check_words[loop] + "/";
+                        }
 
-                     full_fault_list[full_fault_list_count].full_path_fault_block_name
-                         = full_path + "FAULT_" + block_name;//Block_DB[i].Name;    
+                        full_fault_list[full_fault_list_count].full_path_fault_block_name
+                            = full_path + "FAULT_" + block_name;//Block_DB[i].Name;    
 
                         // dstport 개수 만큼 결함주입 모듈 설정
                         full_fault_list[full_fault_list_count].num_dstport = Block_DB[i].dst_port_num;
 
                         full_fault_list[full_fault_list_count++].set_injected = false;
                     }
-
-                //}
+                }
             }
 
             // 2. 파일을 하나 만든다.
@@ -3734,9 +3766,9 @@ namespace MDL_Gen_V02
 
                 bool add_new_line = false;
 
-                string [] str_t_f_branch = new string[10];  // 1버전은 10개의 분기 모듈 처리 가능함
-                string [] str_t_branch = new string[10];  // 1버전은 10개의 분기 모듈 처리 가능함
-                string[] str_t_branch_port = new string[10];
+                string [] str_t_f_branch = new string[50];  // 1버전은 10개의 분기 모듈 처리 가능함
+                string [] str_t_branch = new string[50];  // 1버전은 10개의 분기 모듈 처리 가능함
+                string[] str_t_branch_port = new string[50];
 
                 var sb_line = new StringBuilder();
 
@@ -3833,7 +3865,8 @@ namespace MDL_Gen_V02
                         t_DstBlock = t_delimiter_DstBlock[1];
                         t_f_DstBlock = "FAULT_" + t_delimiter_DstBlock[1];
 
-                        for(int t_num = 0; t_num < full_fault_list_count; t_num++)
+                       
+                        for (int t_num = 0; t_num < full_fault_list_count; t_num++)
                         {
                             // 결함 블록을 생성한 라인만 수정을 한다(2019 년 11일 수정필요함)
                             if(t_f_DstBlock == full_fault_list[t_num].fault_block_name) // && full_fault_list[t_num].Block_Data.Name == t_SrcBlock)
@@ -3887,64 +3920,126 @@ namespace MDL_Gen_V02
                     }
                     else if(set_DstPort == true)
                     {       // 포트의 개수를 설정하는 구문  현재는 5개까지 지원할 수 있도록
-                        if(set_update_DstBlock == true)
+
+                        char[] delimiterSrcBlock = { '"', ' ' , '\t' };
+                        string[] t_delimiter_SrcBlock = str.Split(delimiterSrcBlock);
+
+                        if (set_update_DstBlock == true)
                         {
-                            if(str.Contains("1") == true)       
+                            // 연결 포트 수를 50개까지 지원하기 위한 수정 구문
+
+                            if (t_delimiter_SrcBlock[t_delimiter_SrcBlock.Count()-1] == "1")
                             {
-                                buffer_port = "1";
+                                buffer_port = t_delimiter_SrcBlock[t_delimiter_SrcBlock.Count() - 1].ToString();
                                 sb_line.Append(buffer_DstBlock + "\"\n");
 
                                 sb_line.Append(str); // 앞부분을 모두 저장
                                 sb_line.Append("\n");
 
                                 if (set_branch == true)
-                                    str_t_branch_port[num_branch - 1] = "1";
-                            }
-                            else if (str.Contains("2") == true)
-                            {
-                                buffer_port = "2";
-                                buffer_DstBlock += "_2\"";
-                                sb_line.Append(buffer_DstBlock + "\n");
-                                sb_line.Append("DstPort		      1\n");
-
-                                if (set_branch == true)
-                                    str_t_branch_port[num_branch - 1] = "2";
-                            }
-                            else if (str.Contains("3") == true)
-                            {
-                                buffer_port = "3";
-                                buffer_DstBlock += "_3\"";
-                                sb_line.Append(buffer_DstBlock + "\n");
-                                sb_line.Append("DstPort		      1\n");
-
-                                if (set_branch == true)
-                                    str_t_branch_port[num_branch - 1] = "3";
-                            }
-                            else if (str.Contains("4") == true)
-                            {
-                                buffer_port = "4";
-                                buffer_DstBlock += "_4\"";
-                                sb_line.Append(buffer_DstBlock + "\n");
-                                sb_line.Append("DstPort		      1\n");
-
-                                if (set_branch == true)
-                                    str_t_branch_port[num_branch - 1] = "4";
-                            }
-                            else if (str.Contains("5") == true)
-                            {
-                                buffer_port = "5";
-                                buffer_DstBlock += "_5\"";
-                                sb_line.Append(buffer_DstBlock + "\n");
-                                sb_line.Append("DstPort		      1\n");
-
-                                if (set_branch == true)
-                                    str_t_branch_port[num_branch - 1] = "5";
+                                    str_t_branch_port[num_branch - 1] = t_delimiter_SrcBlock[t_delimiter_SrcBlock.Count() - 1].ToString();
                             }
                             else
                             {
+                                buffer_port = t_delimiter_SrcBlock[t_delimiter_SrcBlock.Count() - 1].ToString();
+                                buffer_DstBlock += "_" + t_delimiter_SrcBlock[t_delimiter_SrcBlock.Count() - 1].ToString() + "\"";
+                                sb_line.Append(buffer_DstBlock + "\n");
+                                sb_line.Append("DstPort		      1\n");
 
+                                if (set_branch == true)
+                                    str_t_branch_port[num_branch - 1] = t_delimiter_SrcBlock[t_delimiter_SrcBlock.Count() - 1].ToString();
                             }
 
+                            /*
+                            
+                                                         int multi_port_id = 1;
+                                                        for(;multi_port_id <= 50; multi_port_id++)
+                                                        {
+                                                            if (str.Contains(multi_port_id.ToString()) == true)
+                                                            {
+                                                                if(multi_port_id  == 1)
+                                                                { 
+                                                                    buffer_port = multi_port_id.ToString();
+                                                                    sb_line.Append(buffer_DstBlock + "\"\n");
+
+                                                                    sb_line.Append(str); // 앞부분을 모두 저장
+                                                                    sb_line.Append("\n");
+
+                                                                    if (set_branch == true)
+                                                                        str_t_branch_port[num_branch - 1] = multi_port_id.ToString();
+                                                                }
+                                                                else
+                                                                {
+                                                                    buffer_port = multi_port_id.ToString();
+                                                                    buffer_DstBlock += "_"+ multi_port_id.ToString() + "\"";
+                                                                    sb_line.Append(buffer_DstBlock + "\n");
+                                                                    sb_line.Append("DstPort		      1\n");
+
+                                                                    if (set_branch == true)
+                                                                        str_t_branch_port[num_branch - 1] = multi_port_id.ToString();
+                                                                }
+
+                                                                break;
+                                                            }
+                                                        }
+                            */
+                            /*
+                                                        if(str.Contains("1") == true)       
+                                                        {
+                                                            buffer_port = "1";
+                                                            sb_line.Append(buffer_DstBlock + "\"\n");
+
+                                                            sb_line.Append(str); // 앞부분을 모두 저장
+                                                            sb_line.Append("\n");
+
+                                                            if (set_branch == true)
+                                                                str_t_branch_port[num_branch - 1] = "1";
+                                                        }
+                                                        else if (str.Contains("2") == true)
+                                                        {
+                                                            buffer_port = "2";
+                                                            buffer_DstBlock += "_2\"";
+                                                            sb_line.Append(buffer_DstBlock + "\n");
+                                                            sb_line.Append("DstPort		      1\n");
+
+                                                            if (set_branch == true)
+                                                                str_t_branch_port[num_branch - 1] = "2";
+                                                        }
+                                                        else if (str.Contains("3") == true)
+                                                        {
+                                                            buffer_port = "3";
+                                                            buffer_DstBlock += "_3\"";
+                                                            sb_line.Append(buffer_DstBlock + "\n");
+                                                            sb_line.Append("DstPort		      1\n");
+
+                                                            if (set_branch == true)
+                                                                str_t_branch_port[num_branch - 1] = "3";
+                                                        }
+                                                        else if (str.Contains("4") == true)
+                                                        {
+                                                            buffer_port = "4";
+                                                            buffer_DstBlock += "_4\"";
+                                                            sb_line.Append(buffer_DstBlock + "\n");
+                                                            sb_line.Append("DstPort		      1\n");
+
+                                                            if (set_branch == true)
+                                                                str_t_branch_port[num_branch - 1] = "4";
+                                                        }
+                                                        else if (str.Contains("5") == true)
+                                                        {
+                                                            buffer_port = "5";
+                                                            buffer_DstBlock += "_5\"";
+                                                            sb_line.Append(buffer_DstBlock + "\n");
+                                                            sb_line.Append("DstPort		      1\n");
+
+                                                            if (set_branch == true)
+                                                                str_t_branch_port[num_branch - 1] = "5";
+                                                        }
+                                                        else
+                                                        {
+
+                                                        }
+                            */
                             set_update_DstBlock = false;    // Dst 업데이트 완료 
 
                         }
